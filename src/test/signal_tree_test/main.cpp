@@ -205,26 +205,26 @@ int main
     char const **
 )
 {
-    if (!test_single_threaded<64>() == 0)
+    if (test_single_threaded<64>() != 0)
         return -1;
-    if (!test_single_threaded<512>() == 0)
+    if (test_single_threaded<512>() != 0)
         return -1;
-    if (!test_single_threaded<8192>() == 0)
+    if (test_single_threaded<8192>() != 0)
         return -1;
-    if (!test_single_threaded<1'000'000>() == 0)
+    if (test_single_threaded<1'000'000>() != 0)
         return -1;
-    if (!test_single_threaded<100'000'000>() == 0)
+    if (test_single_threaded<100'000'000>() != 0)
         return -1;
 
-    if (!test_multi_threaded<64>() == 0)
+    if (test_multi_threaded<64>() != 0)
         return -1;
-    if (!test_multi_threaded<512>() == 0)
+    if (test_multi_threaded<512>() != 0)
         return -1;
-    if (!test_multi_threaded<8192>() == 0)
+    if (test_multi_threaded<8192>() != 0)
         return -1;
-    if (!test_multi_threaded<1'000'000>() == 0)
+    if (test_multi_threaded<1'000'000>() != 0)
         return -1;    
-    if (!test_multi_threaded<100'000'000>() == 0)
+    if (test_multi_threaded<100'000'000>() != 0)
         return -1;    
     return 0;
 }
