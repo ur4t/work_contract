@@ -30,7 +30,7 @@ void example_lock_free
     std::vector<std::jthread> workerThreads(number_of_worker_threads);
     std::atomic<std::uint64_t> pendingThreads(number_of_worker_threads);
     for (auto & workerThread : workerThreads)
-        workerThread = std::move(std::jthread([&](auto const & stopToken)
+        workerThread = std::jthread([&](auto const & stopToken)
         {
             --pendingThreads;
             while (pendingThreads > 0)
@@ -38,7 +38,7 @@ void example_lock_free
 
             while (!stopToken.stop_requested()) 
                 workContractGroup.execute_next_contract();
-        }));
+        });
 
     // create a work contract
     std::uint64_t volatile errorCount = 0;

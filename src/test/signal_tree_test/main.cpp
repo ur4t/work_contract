@@ -28,7 +28,7 @@ int test_multi_threaded
         std::atomic<std::size_t> setErrorCount{0};
         for (auto & thread : threads)
         {
-            thread = std::move(std::jthread([&, n = threadIndex]() mutable
+            thread = std::jthread([&, n = threadIndex]() mutable
                     {
                         while (n < actual_signal_tree_capacity)
                         {
@@ -37,7 +37,7 @@ int test_multi_threaded
                                 setErrorCount++;
                             n += num_threads;
                         }
-                    }));
+                    });
             ++threadIndex;
         }
         for (auto & thread : threads)
@@ -50,7 +50,7 @@ int test_multi_threaded
         std::atomic<std::size_t> selectErrorCount{0};
         for (auto & thread : threads)
         {
-            thread = std::move(std::jthread([&, n = threadIndex]() mutable
+            thread = std::jthread([&, n = threadIndex]() mutable
                     {
                         while (n < actual_signal_tree_capacity)
                         {
@@ -59,7 +59,7 @@ int test_multi_threaded
                                 selectErrorCount++;
                             n += num_threads;
                         }
-                    }));
+                    });
             ++threadIndex;
         }
         for (auto & thread : threads)
