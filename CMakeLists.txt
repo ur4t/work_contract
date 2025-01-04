@@ -16,6 +16,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         -O0
         -march=native
         -fPIE
+        -fPIC
         -Wall
     )
 else()
@@ -24,6 +25,7 @@ else()
         -g
         -march=native
         -fPIE
+        -fPIC
         -Wall
     )
 endif()
