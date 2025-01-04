@@ -42,7 +42,7 @@ void example_lock_free
 
     // create a work contract
     std::uint64_t volatile errorCount = 0;
-    auto workFunction = [&, expected = 0](auto & contractToken) mutable
+    auto workFunction = [&, expected = 0ull](auto & contractToken) mutable
             {
                 // work contracts are executed by a single thread (thread safe) regardless of how
                 // many threads are servicing the parent work contract group.
