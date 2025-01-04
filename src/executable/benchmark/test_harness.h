@@ -19,7 +19,7 @@ struct container<algorithm::tbb, T>
     using task_type = T;
     container(std::size_t capacity):queue_(){}
     void push(std::int32_t value){queue_.push(value);}
-    auto pop(){std::int32_t result; while (!queue_.try_pop(result)); return result;}
+    auto pop(){std::int32_t result; while (!queue_.try_pop(result)) {}; return result;}
     tbb::concurrent_queue<std::int32_t> queue_;
 };
 
@@ -30,7 +30,7 @@ struct container<algorithm::moody_camel, T>
     using task_type = T;
     container(std::size_t capacity):queue_(capacity * 2){}
     void push(std::int32_t value){while (!queue_.enqueue(value));}
-    auto pop(){std::int32_t result; while (!queue_.try_dequeue(result)); return result;}
+    auto pop(){std::int32_t result; while (!queue_.try_dequeue(result)) {}; return result;}
     moodycamel::ConcurrentQueue<std::int32_t> queue_;
 };
 
@@ -41,7 +41,7 @@ struct container<algorithm::es, T>
     using task_type = T;
     container(std::size_t capacity):queue_(capacity * 2){}
     void push(std::int32_t value){while (!queue_.push(value));}
-    auto pop(){std::int32_t result; while (!queue_.pop(result)); return result;}
+    auto pop(){std::int32_t result; while (!queue_.pop(result)) {}; return result;}
     es::lockfree::mpmc_queue<std::int32_t> queue_;
 };
 
