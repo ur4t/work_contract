@@ -16,7 +16,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         -O0
         -march=native
         -fPIE
-        -Wno-changes-meaning # tbb 
         -Wall
     )
 else()
@@ -25,7 +24,6 @@ else()
         -g
         -march=native
         -fPIE
-        -Wno-changes-meaning # tbb
         -Wall
     )
 endif()
@@ -71,10 +69,12 @@ if (WORK_CONTRACT_BUILD_BENCHMARK)
     fetch_dependency("https://github.com/erez-strauss/lockfree_mpmc_queue.git;master")
     fetch_dependency("https://github.com/google/googletest.git;main")
     set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-    set(TBB_BUILD_TESTS OFF)
-    set(TBB_BUILD_SHARED OFF)
-    set(TBB_BUILD_STATIC ON)
-    fetch_dependency("https://github.com/wjakob/tbb.git;master")
+    set(TBB_TEST OFF)
+    set(TBB_INSTALL OFF)
+    set(TBB_OUTPUT_DIR_BASE "tbb")
+    string(TOLOWER ${TBB_OUTPUT_DIR_BASE}_${CMAKE_BUILD_TYPE} WORK_CONTRACT_TBB)
+    link_directories(${CMAKE_BINARY_DIR}/${WORK_CONTRACT_TBB})
+    fetch_dependency("https://github.com/uxlfoundation/oneTBB;master")
 endif(WORK_CONTRACT_BUILD_BENCHMARK)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME})
