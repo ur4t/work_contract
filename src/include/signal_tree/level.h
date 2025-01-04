@@ -45,7 +45,7 @@ namespace bcpp::implementation::signal_tree
 
     //=============================================================================
     template <level_traits_concept T>
-    class alignas(64) level final
+    struct alignas(64) level final
     {
     public:
 
